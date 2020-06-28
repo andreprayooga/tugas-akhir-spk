@@ -15,7 +15,7 @@ class Nilai extends CI_Controller {
         $this->load->view('templates/header.php', $data);
 		$this->load->view('templates/navbar.php', $data);
 		$this->load->view('templates/sidebar.php', $data);
-        $this->load->view('nilai_warga.php');
+        $this->load->view('nilai_alternatif.php');
         $this->load->view('templates/footer.php');
 	}
 }

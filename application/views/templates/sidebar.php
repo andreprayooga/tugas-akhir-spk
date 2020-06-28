@@ -20,7 +20,7 @@
                             <a class="nav-link" href="<?= site_url('Kriteria') ?>"><i class="fas fa-list-ol"></i> <span>Data Kriteria</span></a>
                         </li>
                         <li class="<?php echo $url == 'Nilai' ? "active" : ''?>">
-                            <a class="nav-link" href="<?= site_url('Nilai') ?>"><i class="fas fa-not-equal"></i> <span>Data Nilai Warga</span></a>
+                            <a class="nav-link" href="<?= site_url('Nilai') ?>"><i class="fas fa-not-equal"></i> <span>Data Nilai Alternatif</span></a>
                         </li>
                         <li class="<?php echo $url == 'Metode' ? "active" : ''?>">
                             <a class="nav-link" href="<?= site_url('Metode') ?>"><i class="fas fa-square-root-alt"></i> <span>Metode Perhitungan</span></a>
