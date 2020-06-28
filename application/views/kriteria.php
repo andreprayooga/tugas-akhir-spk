@@ -1,11 +1,14 @@
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-            <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
-
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Data Kriteria</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Utilities</a></div>
+                <div class="breadcrumb-item">Data Kriteria</div>
+            </div>
         </div>
-        <!-- /.container-fluid -->
 
+        <div class="section-body">
         </div>
-        <!-- End of Main Content -->
+    </section>
+</div>

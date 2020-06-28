@@ -10,9 +10,11 @@ class Warga extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('templates/header.php');
-        $this->load->view('templates/sidebar.php');
-        $this->load->view('templates/navbar.php');
+        $data['url'] = 'Warga';
+        
+        $this->load->view('templates/header.php', $data);
+		$this->load->view('templates/navbar.php', $data);
+		$this->load->view('templates/sidebar.php', $data);
         $this->load->view('warga.php');
         $this->load->view('templates/footer.php');
 	}

@@ -1,57 +1,93 @@
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h4 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
-                            Report</a>
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>Dashboard</h1>
                     </div>
-
-                    <!-- Content Row -->
                     <div class="row">
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-6 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                $40,000
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Admin</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        10
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-6 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                $215,000
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-danger">
+                                    <i class="far fa-newspaper"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>News</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        42
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-warning">
+                                    <i class="far fa-file"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Reports</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        1,201
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-success">
+                                    <i class="fas fa-circle"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Online Users</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        47
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.container-fluid -->
-                </div>
-                <!-- End of Main Content -->
+                    <div class="row">
+                        <div class="col-lg-5 col-md-12 col-12 col-sm-12">
+                            <form method="post" class="needs-validation" novalidate="">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Quick Draft</h4>
+                                    </div>
+                                    <div class="card-body pb-0">
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <input type="text" name="title" class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in the title
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer pt-0">
+                                        <button class="btn btn-primary">Save Draft</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
