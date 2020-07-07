@@ -1,21 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class AuthModel extends CI_Model {
-    
-    public function login($username, $password)
-    {
-        $this->db->where('username', $username);
-        $this->db->where('password', $password);
-
-        $result = $this->db->get('tb_user');
-
-        if($result->num_rows() == 1) {
-            $data['id_user'] = $result->row(0)->id_user;
-            $data['fk_id_user'] = $result->row(0)->fk_id_user;
-            return $data;
-        } else {
-            return false;
-        }
+class AuthModel extends CI_Model
+{
+    function auth_login($username,$password){
+        $query=$this->db->query("SELECT * FROM tb_user WHERE username='$username' AND password =md5('$password') LIMIT 1");
+        return $query;
     }
 }

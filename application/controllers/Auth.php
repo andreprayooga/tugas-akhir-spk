@@ -4,65 +4,59 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Auth extends CI_Controller
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->library('form_validation', 'session');
-        $this->load->model('AuthModel');
-    }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('form_validation', 'session');
+		$this->load->model('AuthModel');
+	}
 
-    public function index()
-    {
-        $this->load->view('templates/auth-header.php');
-        $this->load->view('auth-login'); // Load view auth-login.php
-        $this->load->view('templates/auth-footer.php');
-    }
+	public function index()
+	{
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-    public function login()
-    {
-        $this->form_validation->set_rules('username', 'Username', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/auth-header');
+			$this->load->view('auth-login');
+			$this->load->view('templates/auth-footer');
+		} else {
+			redirect('dashboard', 'refresh');
+		}
+	}
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/auth-header.php');
-            $this->load->view('auth-login.php');
-            $this->load->view('templates/auth-footer.php');
-        } else {
-            //get username
-            $username = $this->input->post('username');
-            //get password
-            $password = $this->input->post('password');
-            //user melakukan login
-            $id_user = $this->AuthModel->login('$username', '$password');
-            //membuat kondisi dan session
-            if($id_user){
-                $user_data = array(
-                    'id_user' => $id_user,
-                    'username' => $username,
-                    'password' => $password,
-                    'fk_id_level' => $id_user['fk_id_level'],
-                );
+	public function session_login()
+	{
+		$username = htmlspecialchars($this->input->post('username', true), ENT_QUOTES);
+		$password = htmlspecialchars($this->input->post('password', true), ENT_QUOTES);
 
-                $this->session->set_userdata($user_data);
-                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Selamat datang!</div>');
+		$cek_user = $this->AuthModel->auth_login($username, $password);
 
-                if($id_user['fk_id_level'] == '1'){
-                    redirect('Dashboard');
-                } else {
-                    redirect('Dashboard', 'refresh');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
-                redirect('Auth/login');
-            }
-        }
-    }
+		if ($cek_user->num_rows() > 0) {
+			$data = $cek_user->row_array();
+			$this->session->set_userdata('cek_login', true);
+			if ($data['fk_id_level'] == '1') {
+				$this->session->set_userdata('fk_id_level', '1');
+				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
+				$this->session->set_userdata('username', $data['username']);
+				redirect('dashboard', 'refresh');
+			} else {
+				$this->session->set_userdata('fk_id_level', '2');
+				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
+				$this->session->set_userdata('username', $data['username']);
+				redirect('dashboard', 'refresh');
+			}
+		} else {
+			echo $this->session->set_flashdata('message', 'Username Atau Password Salah');
+		}
+		redirect('auth', 'refresh');
+	}
 
-    public function logout()
-    {
-        //unset user_data
-        $this->session->unset_userdata('username');
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Logout!</div>');
-        redirect('Auth');
-    }
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		$this->session->unset_userdata('username');
+		redirect('auth', 'refresh');
+	}
 }

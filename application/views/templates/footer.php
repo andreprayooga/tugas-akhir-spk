@@ -1,30 +1,51 @@
 <footer class="main-footer">
-    <div class="footer-left">
-        Copyright &copy; <?php echo date("Y"); ?> <div class="bullet"></div> <a href="https://nauval.in/">Sistem Pendukung Keputusan - MOORA</a>
+    <div class="pull-right hidden-xs">
+        <b>Version</b> BETA
     </div>
+    <strong>Copyright &copy; <?= date("Y"); ?> <a href="https://adminlte.io"></a>.</strong> Sistem Pendukung Keputusan (MOORA)
 </footer>
+
 </div>
-</div>
+<!-- ./wrapper -->
 
-<!-- General JS Scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="<?= base_url('assets'); ?>/js/stisla.js"></script>
-
-<!-- JS Libraies -->
-<script src="<?= base_url('assets'); ?>/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url('assets'); ?>/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?= base_url('assets'); ?>/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
-
-<!-- Page Specific JS File -->
-<script src="<?= base_url('assets'); ?>/js/page/modules-datatables.js"></script>
-
-<!-- Template JS File -->
-<script src="<?= base_url('assets'); ?>/js/scripts.js"></script>
-<script src="<?= base_url('assets'); ?>/js/custom.js"></script>
+<!-- jQuery 3 -->
+<script src="<?= base_url('assets/'); ?>bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?= base_url('assets/'); ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="<?= base_url('assets/'); ?>bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
+<!-- Sparkline -->
+<script src="<?= base_url('assets/'); ?>bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap  -->
+<script src="<?= base_url('assets/'); ?>plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="<?= base_url('assets/'); ?>plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- DataTables -->
+<script src="<?= base_url('assets/'); ?>bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<?= base_url('assets/'); ?>bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- ChartJS -->
+<script src="<?= base_url('assets/'); ?>bower_components/chart.js/Chart.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?= base_url('assets/'); ?>dist/js/pages/dashboard2.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 
 </html>
