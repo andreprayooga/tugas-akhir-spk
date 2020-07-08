@@ -30,17 +30,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <!-- <?php foreach ($data as $key => $value) : ?>
-                              <tr>
-                                  <td><?= ++$key; ?></td>
-                                  <td><?= $value->nama_alternatif; ?></td>
-                                  <td>
-                                      <a href="<?= site_url("nilai/detail/" . $value->id_nilai) ?>" class="btn btn-sm btn-info"><i class="fa fa-info-circle"></i>&nbsp; Detail</a>
-                                      <a href="<?= site_url("nilai/update/" . $value->id_nilai) ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                      <a href="<?= site_url("nilai/delete/" . $value->id_nilai) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp; Delete</a>
-                                  </td>
-                              </tr>
-                          <?php endforeach; ?> -->
+                          
                       </tbody>
                       <tfoot>
                           <tr>
@@ -58,3 +48,6 @@
       <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+  

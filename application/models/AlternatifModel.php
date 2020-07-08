@@ -12,11 +12,11 @@ class AlternatifModel extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_id($id)
+    public function get_alternatif_by_id($id_alternatif)
     {
         $this->db->select('*');
         $this->db->from('tb_alternatif');
-        $this->db->where('id_alternatif', $id);
+        $this->db->where('id_alternatif', $id_alternatif);
         return $this->db->get()->row(0);
     }
 
@@ -30,21 +30,21 @@ class AlternatifModel extends CI_Model
         $this->db->insert('tb_alternatif', $data);
     }
 
-    public function update_data($id)
+    public function update_data($id_alternatif)
     {
         $data = [
             'kode_alternatif' => $this->input->post('kode_alternatif'),
             'nama_alternatif' => $this->input->post('nama_alternatif'),
-        ];  
+        ];
 
         $this->db->set($data);
-        $this->db->where('id_alternatif', $id);
-        $this->db->update('tb_alternatif', $data); 
+        $this->db->where('id_alternatif', $id_alternatif);
+        $this->db->update('tb_alternatif', $data);
     }
 
-    public function delete_data($id)
+    public function delete_data($id_alternatif)
     {
-        $this->db->where('id_alternatif', $id);
+        $this->db->where('id_alternatif', $id_alternatif);
         $this->db->delete('tb_alternatif');
     }
 }

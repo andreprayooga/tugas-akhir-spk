@@ -32,7 +32,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php foreach ($data as $key => $value) : ?>
+                          <?php foreach ($data_alternatif as $key => $value) : ?>
                               <tr>
                                   <td><?= ++$key; ?></td>
                                   <td><?= $value->kode_alternatif ?></td>

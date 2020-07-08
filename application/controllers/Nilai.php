@@ -7,16 +7,22 @@ class Nilai extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library('form_validation');
+		$this->load->library('form_validation', 'session');
 		$this->load->model('AlternatifModel');
 		$this->load->model('KriteriaModel');
 		$this->load->model('NilaiModel');
+		//validasi jika user belum login
+		if ($this->session->userdata('cek_login') != TRUE) {
+			redirect('auth', 'refresh');
+		}
 	}
 
 	public function index()
 	{
-		$data['data'] = $this->AlternatifModel->get_all_alternatif();
-		$data['data'] = $this->NilaiModel->get_alternatif_nilai();
+		$data['alternatif'] = $this->AlternatifModel->get_all_alternatif();
+		$data['nilai'] = $this->NilaiModel->get_data_alternatif_from_nilai();
+
+		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 		$data['url'] = 'Nilai';
 
@@ -27,10 +33,6 @@ class Nilai extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function detail()
-	{
-
-	}
 
 	public function insert()
 	{
@@ -48,6 +50,7 @@ class Nilai extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$data['alternatif'] = $this->AlternatifModel->get_all_alternatif();
 			$data['url'] = 'Nilai';
+			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/navbar', $data);

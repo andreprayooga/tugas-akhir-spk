@@ -12,11 +12,11 @@ class KriteriaModel extends CI_Model
         return $this->db->get()->result();
     }
 
-    function get_id($id)
+    function get_kriteria_by_id($id_kriteria)
     {
         $this->db->select('*');
         $this->db->from('tb_kriteria');
-        $this->db->where('id_kriteria', $id);
+        $this->db->where('id_kriteria', $id_kriteria);
         return $this->db->get()->row(0);
     }
 
@@ -31,7 +31,7 @@ class KriteriaModel extends CI_Model
         $this->db->insert('tb_kriteria', $data);
     }
 
-    function update_data($id)
+    function update_data($id_kriteria)
     {
         $data = [
             'nama_kriteria' => $this->input->post('nama_kriteria'),
@@ -40,13 +40,13 @@ class KriteriaModel extends CI_Model
         ];
 
         $this->db->set($data);
-        $this->db->where('id_kriteria', $id);
+        $this->db->where('id_kriteria', $id_kriteria);
         $this->db->update('tb_kriteria', $data);
     }
 
-    function delete_data($id)
+    function delete_data($id_kriteria)
     {
-        $this->db->where('id_kriteria', $id);
+        $this->db->where('id_kriteria', $id_kriteria);
         $this->db->delete('tb_kriteria');
     }
 }

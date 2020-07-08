@@ -8,7 +8,7 @@
                   <img src="<?= base_url('assets/'); ?>dist/img/user2-160x160.jpg" class="img-circle img-thumbnail" alt="User Image">
               </div>
               <div class="pull-left info">
-                  <p><?= $session_login['username']; ?>zzzz</p>
+                  <p><?= $session_login['nama_lengkap']; ?></p>
                   <p><small>Role : Administrator</small></p>
               </div>
           </div>
