@@ -15,9 +15,7 @@
       <section class="content">
           <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Data Kriteria</h3>
-                  <small>(Kriteria menjadi patokan dalam pemilihan sebuah alternatif)</small>
-                  <!-- <a href="<?= base_url('kriteria/insert') ?>" class="btn btn-sm btn-primary pull-right">Tambah Data</a> -->
+                  <h3 class="box-title">Menentukan Nilai Alternatif</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">

@@ -36,36 +36,38 @@
                       <div class="row">
                           <div class="col-md-4">
                               <div class="form-group">
-                                  <label for="kriteria1">Kriteria 1</label>
+                                  <label for="kriteria1">Status Bangunan Tinggal</label>
                                   <select class="form-control" name="kriteria1" id="kriteria1">
-                                      <option>-- Pilih Kriteria Status Bangunan Tinggal --</option>
-                                      <option value="100">Milik Sendiri</option>
-                                      <option value="80">Kontrak / Sewa</option>
+                                      <option>-- Pilih Status Bangunan Tinggal --</option>
+                                      <option value="50">Milik Sendiri</option>
+                                      <option value="40">Kontrak / Sewa</option>
+                                      <option value="30">Bebas Sewa</option>
                                       <?= set_value('kriteria1') ?>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-4">
                               <div class="form-group">
-                                  <label for="kriteria2">Kriteria 2</label>
+                                  <label for="kriteria2">Status Lahan Tinggal</label>
                                   <select class="form-control" name="kriteria2" id="kriteria2">
-                                      <option>-- Pilih Kriteria Status Lahan Tinggal --</option>
-                                      <option value="100">Milik Sendiri</option>
-                                      <option value="80">Milik Orang Lain</option>
+                                      <option>-- Pilih Status Lahan Tinggal --</option>
+                                      <option value="50">Milik Sendiri</option>
+                                      <option value="40">Milik Orang Lain</option>
+                                      <option value="30">Tanah Negara</option>
                                       <?= set_value('kriteria2') ?>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria3">Kriteria 3</label>
+                                  <label for="kriteria3">Jenis Lantai Terluas</label>
                                   <select class="form-control" name="kriteria3" id="kriteria3">
-                                      <option>-- Pilih Kriteria Jenis Lantai Terluas --</option>
-                                      <option value="100">Keramik</option>
-                                      <option value="80">Parket / Vinil / Permadani</option>
-                                      <option value="50">Ubin / Tegel Teraso</option>
-                                      <option value="30">Semen / Bata Merah</option>
-                                      <option value="10">Bambu</option>
+                                      <option>-- Pilih Jenis Lantai Terluas --</option>
+                                      <option value="50">Keramik</option>
+                                      <option value="40">Parket / Vinil / Permadani</option>
+                                      <option value="30">Ubin / Tegel Teraso</option>
+                                      <option value="20">Semen / Bata Merah</option>
+                                      <option value="10">Tanah</option>
                                       <?= set_value('kriteria3') ?>
                                   </select>
                               </div>
@@ -74,13 +76,12 @@
                       <div class="row">
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria4">Kriteria 4</label>
+                                  <label for="kriteria4">Jenis Dinding</label>
                                   <select class="form-control" name="kriteria4" id="kriteria4">
-                                      <option>-- Pilih Kriteria Jenis Dinding --</option>
-                                      <option value="100">Tembok</option>
-                                      <option value="80">Plesteran Anyaman Bambu / Kawat</option>
-                                      <option value="60">Kayu</option>
-                                      <option value="40">Anyaman Bambu</option>
+                                      <option>-- Pilih Jenis Dinding --</option>
+                                      <option value="50">Tembok</option>
+                                      <option value="40">Plesteran Anyaman Bambu / Kawat</option>
+                                      <option value="30">Anyaman Bambu</option>
                                       <option value="20">Batang Kayu</option>
                                       <option value="10">Bambu</option>
                                       <?= set_value('kriteria4') ?>
@@ -89,23 +90,24 @@
                           </div>
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria5">Kriteria 5</label>
+                                  <label for="kriteria5">Kondsi Dinding</label>
                                   <select class="form-control" name="kriteria5" id="kriteria5">
-                                      <option>-- Pilih Kriteria Kondsi Dinding --</option>
-                                      <option value="100">Bagus / Kualitas Tinggi</option>
-                                      <option value="50">Jelek / Kualitas Rendah</option>
+                                      <option>-- Pilih Kondsi Dinding --</option>
+                                      <option value="50">Bagus / Kualitas Tinggi</option>
+                                      <option value="10">Jelek / Kualitas Rendah</option>
                                       <?= set_value('kriteria5') ?>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria6">Kriteria 6</label>
+                                  <label for="kriteria6">Jenis Atap</label>
                                   <select class="form-control" name="kriteria6" id="kriteria6">
-                                      <option>-- Pilih Kriteria Jenis Atap --</option>
-                                      <option value="100">Genteng Tanah Liat</option>
-                                      <option value="60">Beton / Cor</option>
-                                      <option value="30">Seng / Esbes</option>
+                                      <option>-- Pilih Jenis Atap --</option>
+                                      <option value="50">Genteng Beton</option>
+                                      <option value="40">Genteng Tanah Liat</option>
+                                      <option value="30">Beton / Cor</option>
+                                      <option value="20">Seng / Esbes</option>
                                       <?= set_value('kriteria6') ?>
                                   </select>
                               </div>
@@ -114,38 +116,37 @@
                       <div class="row">
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria7">Kriteria 7</label>
+                                  <label for="kriteria7">Kondisi Atap</label>
                                   <select class="form-control" name="kriteria7" id="kriteria7">
-                                      <option>-- Pilih Kriteria Kondisi Atap --</option>
-                                      <option value="100">Bagus / Kualitas Tinggi</option>
-                                      <option value="50">Jelek / Kualitas Rendah</option>
+                                      <option>-- Pilih Kondisi Atap --</option>
+                                      <option value="50">Bagus / Kualitas Tinggi</option>
+                                      <option value="10">Jelek / Kualitas Rendah</option>
                                       <?= set_value('kriteria7') ?>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria8">Kriteria 8</label>
+                                  <label for="kriteria8">Sumber Air Minum</label>
                                   <select class="form-control" name="kriteria8" id="kriteria8">
-                                      <option>-- Pilih Kriteria Sumber Air Minum --</option>
-                                      <option value="100">Leding Meteran</option>
-                                      <option value="80">Sumur Bor / Pompa</option>
-                                      <option value="60">Sumur Terlindung</option>
-                                      <option value="40">Sumur Tak Terlindung </option>
-                                      <option value="30">Mata Air Terlindung </option>
-                                      <option value="10">Mata Air Tak Terlindung </option>
+                                      <option>-- Pilih Sumber Air Minum --</option>
+                                      <option value="50">Leding Meteran</option>
+                                      <option value="40">Sumur Bor / Pompa</option>
+                                      <option value="30">Sumur Terlindung</option>
+                                      <option value="20">Sumur Tak Terlindung </option>
+                                      <option value="10">Mata Air Terlindung </option>
                                       <?= set_value('kriteria8') ?>
                                   </select>
                               </div>
                           </div>
                           <div class="col-md-4">
                           <div class="form-group">
-                                  <label for="kriteria9">Kriteria 9</label>
+                                  <label for="kriteria9">Sumber Penerangan</label>
                                   <select class="form-control" name="kriteria9" id="kriteria9">
-                                      <option>-- Pilih Kriteria Sumber Penerangan --</option>
-                                      <option value="100">Listrik PLN</option>
-                                      <option value="50">Listrik NON - PLN</option>
-                                      <option value="20">Bukan Listrik</option>
+                                      <option>-- Pilih Sumber Penerangan --</option>
+                                      <option value="50">Listrik PLN</option>
+                                      <option value="30">Listrik NON - PLN</option>
+                                      <option value="10">Bukan Listrik</option>
                                       <?= set_value('kriteria9') ?>
                                   </select>
                               </div>

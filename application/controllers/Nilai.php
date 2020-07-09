@@ -17,6 +17,20 @@ class Nilai extends CI_Controller
 		}
 	}
 
+	public function detail_nilai($id_nilai)
+	{
+		$data['url'] = 'Nilai';
+		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+		$data['nilai'] = $this->NilaiModel->get_detail_nilai($id_nilai);
+		
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/navbar', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('nilai/detail', $data);
+		$this->load->view('templates/footer');
+
+	}
+
 	public function index()
 	{
 		$data['alternatif'] = $this->AlternatifModel->get_all_alternatif();
@@ -104,6 +118,12 @@ class Nilai extends CI_Controller
 	public function delete($id)
 	{
 		$this->NilaiModel->delete_nilai($id);
+		redirect('nilai', 'refresh');
+	}
+
+	public function delete_alternatif($id_alternatif)
+	{
+		$this->NilaiModel->delete_nilai_by_alternatif($id_alternatif);
 		redirect('nilai', 'refresh');
 	}
 }

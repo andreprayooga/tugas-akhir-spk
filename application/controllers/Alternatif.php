@@ -17,6 +17,7 @@ class Alternatif extends CI_Controller
 
 	public function index()
 	{
+		$data['title'] = 'Alternatif';
 		$data['url'] = 'Alternatif';
 		$data['data_alternatif'] = $this->AlternatifModel->get_all_alternatif();
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
