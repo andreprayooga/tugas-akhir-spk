@@ -13,30 +13,28 @@ class MetodeModel extends CI_Model
 
     public function get_alternatif_by_id()
     {
-        $this->db->select('*');
-        $this->db->from('tb_alternatif');
-        $this->db->where('id_alternatif');
-        return $this->db->get()->row(0);
+        $this->db->order_by("id_alternatif");
+		$query=$this->db->get('tb_alternatif');
+		return $query->result();
     }
 
-    function get_kriteria_by_id($id_kriteria)
+    function get_kriteria_by_id()
     {
-        $this->db->select('*');
-        $this->db->from('tb_kriteria');
-        $this->db->where('id_kriteria', $id_kriteria);
-        return $this->db->get()->row(0);
+        $this->db->order_by("id_kriteria");
+		$query=$this->db->get('tb_kriteria');
+		return $query->result();
     }
 
     public function get_data_nilai($id_alternatif, $id_kriteria)
     {
-        $query = $this->db->query("SELECT * FROM tb_ilai WHERE fk_id_alternatif = '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
+        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_alternatif = '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
 
 		return $query->row_array();
     }
 
     public function get_data_penilaian($id_alternatif, $id_kriteria)
     {
-        $query = $this->db->query("SELECT * FROM tb_ilai WHERE fk_id_alternatif= '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
+        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_alternatif= '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
 
 		return $query->row_array();
     }
@@ -57,8 +55,8 @@ class MetodeModel extends CI_Model
 
     public function pembobotan_nilai($id_kriteria) // pembobotan nilai
     {
-        $query = $this->db->query("SELECT ((nilai/pembagi)*kriteria.bobot) as pembobotan, kriteria.bobot, kriteria.tipe 
-		from nilai join( select SQRT(SUM(POWER(nilai,2)))as pembagi from nilai WHERE id_kriteria='$id_kriteria') as b 
+        $query = $this->db->query("SELECT ((nilai/pembagi)*kriteria.bobot) as pembobotan_nilai, kriteria.bobot, kriteria.tipe 
+		from tb_nilai join( select SQRT(SUM(POWER(nilai,2)))as pembagi from nilai WHERE id_kriteria='$id_kriteria') as b 
 		JOIN Kriteria ON kriteria.id_kriteria=nilai.id_kriteria 
 		WHERE kriteria.id_kriteria='$id_kriteria' GROUP BY nilai.id_alternatif");
 		return $query->row_array();

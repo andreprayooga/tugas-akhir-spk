@@ -18,8 +18,8 @@ class Metode extends CI_Controller {
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 		$data['url'] = 'Metode';
 
-		$data['alternatif'] = $this->MetodeModel->get_alternatif_by_id();
-		$data['kriteria'] = $this->MetodeModel->get_nilai_setiap_alternatif();
+		$data['alternatif'] = $this->MetodeModel->get_nilai_setiap_alternatif();
+		$data['kriteria'] = $this->MetodeModel->get_kriteria_by_id();
 		$data['nilai'] = $this->MetodeModel->get_all_nilai();
 
 		$this->load->view('templates/header', $data);
