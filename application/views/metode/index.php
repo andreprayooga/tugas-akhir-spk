@@ -19,7 +19,7 @@
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped display">
                       <thead>
                           <tr>
                               <th>Nama Alternatif</th>
@@ -62,11 +62,11 @@
             <section class="content">
           <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Menentukan Nilai Optimasi</h3>
+                  <h3 class="box-title">Menentukan Normalisasi Matriks</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                  <table id="example2" class="table table-bordered table-striped">
+                  <table id="example2" class="table table-bordered table-striped display">
                       <thead>
                           <tr>
                               <th>Nama Alternatif</th>
