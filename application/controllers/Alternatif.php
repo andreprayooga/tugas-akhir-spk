@@ -17,14 +17,14 @@ class Alternatif extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = 'Alternatif';
 		$data['url'] = 'Alternatif';
 		$data['data_alternatif'] = $this->AlternatifModel->get_all_alternatif();
+
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('alternatif/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -39,12 +39,13 @@ class Alternatif extends CI_Controller
 			$data['url'] = 'Alternatif';
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('templates/navbar', $data);
 			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
 			$this->load->view('alternatif/insert');
 			$this->load->view('templates/footer');
 		} else {
 			$this->AlternatifModel->insert_data();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses, data berhasil ditambahkan!</div>');
 			redirect('alternatif');
 		}
 	}
@@ -62,12 +63,13 @@ class Alternatif extends CI_Controller
 			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('templates/navbar', $data);
 			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
 			$this->load->view('alternatif/update', $data);
 			$this->load->view('templates/footer');
 		} else {
 			$this->AlternatifModel->update_data($id_alternatif);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses, data berhasil di update!</div>');
 			redirect('alternatif');
 		}
 	}
@@ -75,6 +77,21 @@ class Alternatif extends CI_Controller
 	public function delete($id_alternatif)
 	{
 		$this->AlternatifModel->delete_data($id_alternatif);
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses, data berhasil dihapus!</div>');
 		redirect('alternatif');
+	}
+
+	public function index_warga()
+	{
+		$data['url'] = 'Warga';
+		$data['data_warga'] = $this->AlternatifModel->get_all_warga();
+
+		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
+		$this->load->view('alternatif/index_warga', $data);
+		$this->load->view('templates/footer');
 	}
 }

@@ -21,7 +21,7 @@ class Auth extends CI_Controller
 			$this->load->view('auth-login');
 			$this->load->view('templates/auth-footer');
 		} else {
-			redirect('dashboard', 'refresh');
+			redirect('Dashboard', 'refresh');
 		}
 	}
 
@@ -39,17 +39,17 @@ class Auth extends CI_Controller
 				$this->session->set_userdata('fk_id_level', '1');
 				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
 				$this->session->set_userdata('username', $data['username']);
-				redirect('dashboard', 'refresh');
+				redirect('Dashboard', 'refresh');
 			} else {
 				$this->session->set_userdata('fk_id_level', '2');
 				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
 				$this->session->set_userdata('username', $data['username']);
-				redirect('dashboard', 'refresh');
+				redirect('Dashboard', 'refresh');
 			}
 		} else {
-			echo $this->session->set_flashdata('message', 'Username Atau Password Salah');
+			echo $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Maaf, password anda salah!</div>');
 		}
-		redirect('auth', 'refresh');
+		redirect('Auth', 'refresh');
 	}
 
 
@@ -57,6 +57,6 @@ class Auth extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		$this->session->unset_userdata('username');
-		redirect('auth', 'refresh');
+		redirect('Auth', 'refresh');
 	}
 }

@@ -20,6 +20,22 @@ class AlternatifModel extends CI_Model
         return $this->db->get()->row(0);
     }
 
+    public function get_all_warga()
+    {
+        $this->db->select('*');
+        $this->db->from('tb_warga');
+        $this->db->order_by('id_warga');
+        return $this->db->get()->result();
+    }
+
+    public function get_warga_by_id($id_warga)
+    {
+        $this->db->select('*');
+        $this->db->from('tb_warga');
+        $this->db->where('id_warga', $id_warga);
+        return $this->db->get()->row(0);
+    }
+
     public function insert_data()
     {
         $data = [

@@ -1,48 +1,113 @@
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-              <div class="pull-left image">
-                  <img src="<?= base_url('assets/'); ?>dist/img/user2-160x160.jpg" class="img-circle img-thumbnail" alt="User Image">
-              </div>
-              <div class="pull-left info">
-                  <p><?= $session_login['nama_lengkap']; ?></p>
-                  <p><small>Role : <?= $session_login['fk_id_level']; ?></small></p>
-              </div>
-          </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
-              <div class="input-group">
-                  <input type="text" name="q" class="form-control" placeholder="Search" disabled>
-                  <span class="input-group-btn">
-                      <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                          <i class="fa fa-search"></i>
-                      </button>
-                  </span>
-              </div>
-          </form>
-          <!-- /.search form -->
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-square-root-alt"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SPK <sup>MOORA</sup></div>
+            </a>
 
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu" data-widget="tree">
-              <li class="header">MENU MANAGEMENT</li>
-              <li class="<?= $url == 'Dashboard' ? 'active' : '' ?>">
-                  <a href="<?= base_url('dashboard'); ?>"><i class="fa fa-home"></i>
-                      Dashboard
-                  </a>
-              </li>
-              <li class="<?= $url == 'Alternatif' ? 'active' : '' ?>"><a href="<?= base_url('alternatif'); ?>"><i class="fa fa-users"></i> Data Alternatif</a></li>
-              <li class="<?= $url == 'Kriteria' ? 'active' : '' ?>"><a href="<?= base_url('kriteria'); ?>"><i class="fa fa-line-chart"></i> Data Kriteria</a></li>
-              <li class="<?= $url == 'Nilai' ? 'active' : '' ?>"><a href="<?= base_url('nilai'); ?>"><i class="fa fa-area-chart"></i> Data Nilai </a></li>
-              <li class="<?= $url == 'Metode' ? 'active' : '' ?>"><a href="<?= base_url('metode'); ?>"><i class="fa fa-bar-chart"></i> Metode Perhitungan </a></li>
-              <li class="header">SETTINGS</li>
-              <li>
-                  <a href="<?= site_url('auth/logout') ?>"><i class="fa fa-sign-out"></i> <span>Keluar</span>
-                  </a>
-              </li>
-          </ul>
-      </section>
-      <!-- /.sidebar -->
-  </aside>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item <?php echo $url == 'Dashboard' ? "active" : '' ?>">
+                <a class="nav-link" href="<?php echo base_url('Dashboard'); ?>">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Menu Management
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item <?php echo $url == 'Alternatif' ? "active" : '' ?> || <?php echo $url == 'Kriteria' ? "active" : '' ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Master Data</span>
+                </a>
+
+                <div id="collapseTwo" class="collapse <?php echo $url == 'Alternatif' ? "show" : '' ?> || <?php echo $url == 'Kriteria' ? "show" : '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">List Menu Management :</h6>
+                        <a class="collapse-item <?php echo $url == 'Alternatif' ? "active" : '' ?>" href="<?php echo base_url('Alternatif'); ?>"><i class="fas fa-fw fa-users mr-2"></i>Data Alternatif</a>
+                        <a class="collapse-item <?php echo $url == 'Kriteria' ? "active" : '' ?>" href="<?php echo base_url('Kriteria'); ?>"><i class="fas fa-fw fa-address-book mr-2"></i>Data Kriteria</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item <?php echo $url == 'Nilai' ? "active" : '' ?> || <?php echo $url == 'Metode' ? "active" : '' ?>">
+                <a class="nav-link collapsed pt-0" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Data Metode</span>
+                </a>
+                <div id="collapseUtilities" class="collapse <?php echo $url == 'Nilai' ? "show" : '' ?> || <?php echo $url == 'Metode' ? "show" : '' ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">List Data Metode :</h6>
+                        <a class="collapse-item <?php echo $url == 'Nilai' ? "active" : '' ?>" href="<?php echo base_url('Nilai'); ?>"><i class="fas fa-fw fa-divide mr-2"></i>Data Nilai</a>
+                        <a class="collapse-item <?php echo $url == 'Metode' ? "active" : '' ?>" href="<?php echo base_url('Metode'); ?>"><i class="fas fa-fw fa-percentage mr-2"></i>Data Perhitungan</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item <?php echo $url == 'Warga' ? "active" : '' ?>">
+                <a class="nav-link pb-0" href="<?php echo base_url('Alternatif/index_warga'); ?>">
+                    <i class="fas fa-fw fa-calendar-day"></i>
+                    <span>Data Awal</span></a>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link pt-0" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->

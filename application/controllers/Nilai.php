@@ -24,8 +24,8 @@ class Nilai extends CI_Controller
 		$data['nilai'] = $this->NilaiModel->get_detail_nilai($id_nilai);
 		
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('nilai/detail', $data);
 		$this->load->view('templates/footer');
 
@@ -41,8 +41,8 @@ class Nilai extends CI_Controller
 		$data['url'] = 'Nilai';
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('nilai/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -67,8 +67,8 @@ class Nilai extends CI_Controller
 			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('templates/navbar', $data);
 			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
 			$this->load->view('nilai/insert', $data);
 			$this->load->view('templates/footer');
 		} else {
@@ -105,8 +105,8 @@ class Nilai extends CI_Controller
 			$data['url'] = 'Nilai';
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('templates/navbar', $data);
 			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
 			$this->load->view('nilai/update', $data);
 			$this->load->view('templates/footer');
 		} else {

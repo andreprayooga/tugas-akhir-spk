@@ -1,63 +1,51 @@
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-          <h1>
-              &nbsp;
-          </h1>
-          <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-bookmark"></i> Data Master</a></li>
-              <li class="active"><a href="#"><i class="fa fa-user-plus"></i> Data Alternatif</a></li>
-          </ol>
-      </section> 
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-      <!-- Main content -->
-      <section class="content">
-          <div class="box">
-              <div class="box-header">
-                  <h3 class="box-title">Data Alternatif</h3>
-                  <small>(Warga Desa Blimbing Kecamatan Gurah)</small>
-                  <a href="<?= base_url('alternatif/insert') ?>" class="btn btn-sm btn-primary pull-right">Tambah Data</a>
-              </div>
+    <?php echo $this->session->flashdata('message'); ?>
 
-              <!-- /.box-header -->
-              <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-                          <tr>
-                              <th>No.</th>
-                              <th>Kode Alternatif</th>
-                              <th>Nama Alternatif</th>
-                              <th>Action</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <?php foreach ($data_alternatif as $key => $value) : ?>
-                              <tr>
-                                  <td><?= ++$key; ?></td>
-                                  <td><?= $value->kode_alternatif ?></td>
-                                  <td><?= $value->nama_alternatif ?></td>
-                                  <td>
-                                      <a href="<?= site_url("alternatif/update/" . $value->id_alternatif) ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                      <a href="<?= site_url("alternatif/delete/" . $value->id_alternatif) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp; Delete</a>
-                                  </td>
-                              </tr>
-                          <?php endforeach; ?>
-                      </tbody>
-                      <tfoot>
-                          <tr>
-                              <th>No.</th>
-                              <th>Kode Alternatif</th>
-                              <th>Nama Alternatif</th>
-                              <th>Action</th>
-                          </tr>
-                      </tfoot>
-                  </table>
-              </div>
-              <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-      </section>
-      <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-0">
+            <div>
+                <div class="float-left">
+                    <h6 class="font-weight-bold text-primary my-3">Data Alternatif</h6>
+                </div>
+
+                <div class="float-right">
+                    <a class="btn btn-sm btn-primary mt-2 mr-auto" href="<?php echo base_url('Alternatif/insert'); ?>">Tambah Data</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Kode Alternatif</th>
+                            <th>Nama Alternatif</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data_alternatif as $key => $value) : ?>
+                            <tr>
+                                <td><?= ++$key; ?></td>
+                                <td><?= $value->kode_alternatif ?></td>
+                                <td><?= $value->nama_alternatif ?></td>
+                                <td>
+                                    <a href="<?= site_url("Alternatif/detail/" . $value->id_alternatif) ?>" class="btn btn-sm btn-info"><i class="fa fa-info-circle"></i></a>
+                                    <a href="<?= site_url("Alternatif/update/" . $value->id_alternatif) ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="<?= site_url("Alternatif/delete/" . $value->id_alternatif) ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->

@@ -11,6 +11,10 @@ class Metode extends CI_Controller {
 		$this->load->model('KriteriaModel');
 		$this->load->model('NilaiModel');	
 		$this->load->model('MetodeModel');
+		//validasi jika user belum login
+		if ($this->session->userdata('cek_login') != TRUE) {
+			redirect('auth', 'refresh');
+		}
 	}
 
 	public function index()
@@ -23,8 +27,8 @@ class Metode extends CI_Controller {
 		$data['nilai'] = $this->MetodeModel->get_all_nilai();
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('metode/index', $data);
 		$this->load->view('templates/footer');
 	}

@@ -22,8 +22,8 @@ class Kriteria extends CI_Controller
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navbar', $data);
 		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('kriteria/index', $data);
 		$this->load->view('templates/footer');
 	}
@@ -39,8 +39,8 @@ class Kriteria extends CI_Controller
 			$data['url'] = 'Kriteria';
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('templates/navbar', $data);
 			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
 			$this->load->view('kriteria/insert', $data);
 			$this->load->view('templates/footer');
 		} else {
@@ -63,8 +63,8 @@ class Kriteria extends CI_Controller
 			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data); 
 			$this->load->view('templates/navbar', $data);
-			$this->load->view('templates/sidebar', $data);
 			$this->load->view('kriteria/update', $data);
 			$this->load->view('templates/footer');
 		} else {
