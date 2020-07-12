@@ -52,11 +52,11 @@ class Auth extends CI_Controller
 		redirect('Auth', 'refresh');
 	}
 
-
 	public function logout()
 	{
 		$this->session->sess_destroy();
 		$this->session->unset_userdata('username');
+		echo $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil logout!</div>');
 		redirect('Auth', 'refresh');
 	}
 }

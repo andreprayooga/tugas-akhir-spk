@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Kode Kriteria</th>
                             <th>Nama Kriteria</th>
                             <th>Tipe</th>
                             <th>Bobot</th>
@@ -32,6 +33,7 @@
                         <?php foreach ($data as $key => $value) : ?>
                             <tr>
                                 <td><?php echo ++$key; ?></td>
+                                <td><?php echo $value->kode_kriteria ?></td>
                                 <td><?php echo $value->nama_kriteria ?></td>
                                 <td><?php echo $value->tipe ?></td>
                                 <td><?php echo $value->bobot ?></td>

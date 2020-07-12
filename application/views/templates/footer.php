@@ -56,6 +56,7 @@
 
             <!-- Page level custom scripts -->
             <script src="<?php echo base_url('assets'); ?>/js/demo/datatables-demo.js"></script>
+            <script src="<?php echo base_url('assets'); ?>/js/custom.js"></script>
             </body>
 
             </html>

@@ -166,6 +166,16 @@
 		</div>
 	</div>
 
+	<!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">Hasil Akhir dan Kesimpulan</h6>
+		</div>
+		<div class="card-body">
+			Hasil dari perhitungan MOORA bisa disimpulkan dengan hasil alternatif terbaik yaitu <b><?php echo $nama_alternatif_terpilih['nama_alternatif']; ?></b>, dengan jumlah nilai optimasi <b><?php echo $nilai_optimasi_tertinggi ?></b> .
+		</div>
+	</div>
+
 </div>
 <!-- /.container-fluid -->
 </div>
