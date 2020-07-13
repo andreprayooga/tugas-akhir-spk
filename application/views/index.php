@@ -3,8 +3,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
                             Report</a>
                     </div>
 
@@ -20,7 +19,7 @@
                                                 Warga Desa Blimbing
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?php echo $this->db->get('tb_warga')->num_rows() ?>
+                                                <?php echo $this->db->get('tb_warga')->num_rows() ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -41,7 +40,7 @@
                                                 Kriteria
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?= $this->db->get('tb_kriteria')->num_rows() ?>
+                                                <?= $this->db->get('tb_kriteria')->num_rows() ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -59,21 +58,10 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Tasks
+                                                Nilai Alternatif
                                             </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                        50%
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%;" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?= $this->db->get('tb_nilai')->num_rows() ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -94,7 +82,7 @@
                                                 User Sistem
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <?= $this->db->get('tb_user')->num_rows() ?>
+                                                <?= $this->db->get('tb_user')->num_rows() ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -120,15 +108,13 @@
                                         Project <span class="float-right">Complete!</span>
                                     </h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 100%;"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">
                                         Account Setup <span class="float-right">Complete!</span>
                                     </h4>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -155,5 +141,5 @@
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-            </div>
-            <!-- End of Main Content -->
+                </div>
+                <!-- End of Main Content -->

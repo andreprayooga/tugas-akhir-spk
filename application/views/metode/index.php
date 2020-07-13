@@ -56,11 +56,9 @@
 								<td><?php echo $alt->nama_alternatif ?></td>
 								<?php foreach ($kriteria as $val) :  ?>
 									<td>
-										<?php
-										$data_perhitungan_nilai = $this->MetodeModel->get_niai_setiap_alternatif($alt->id_alternatif, $val->id_kriteria);
-										$data_pembagian_setiap_nilai = $this->MetodeModel->normalisasi_nilai($val->id_kriteria);
-										$data_normalisasi = round($data_perhitungan_nilai['total_nilai'] / $data_pembagian_setiap_nilai['nilai_pembagian'], 3);
-										echo $data_normalisasi; ?>
+										<?php 
+
+										?>
 									</td>
 								<?php endforeach ?>
 							</tr>
@@ -82,41 +80,13 @@
 					<thead>
 						<tr>
 							<th>Nama Alternatif</th>
-							<th>Nilai Maximum (C1+C2+C3+C4+C6+C8+C9)</th>
-							<th>Nilai Minimum (C5+C7)</th>
+							<th>Nilai Maximum</th>
+							<th>Nilai Minimum</th>
 							<th>Nilai Yi = (Max - Min)</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($alternatif as $alt) : ?>
-							<tr>
-								<td><?php echo $alt->nama_alternatif ?></td>
-								<?php
-								$max = 0;
-								$min = 0;
-								foreach ($kriteria as $val) :  ?>
-									<?php
-									$data_perhitungan_nilai = $this->MetodeModel->get_niai_setiap_alternatif($alt->id_alternatif, $val->id_kriteria);
-									$data_pembagian_setiap_nilai = $this->MetodeModel->normalisasi_nilai($val->id_kriteria);
-									$data_pembobotan_nilai = $this->MetodeModel->pembobotan_nilai($val->id_kriteria);
 
-									if ($data_pembobotan_nilai['tipe'] === 'Benefit') {
-										$max += round($data_perhitungan_nilai['total_nilai'] / $data_pembagian_setiap_nilai['nilai_pembagian'] * $data_pembobotan_nilai['bobot'], 4);
-									} else {
-										$min += round($data_perhitungan_nilai['total_nilai'] / $data_pembagian_setiap_nilai['nilai_pembagian'] * $data_pembobotan_nilai['bobot'], 4);
-									}
-									$nilai_yi = $max - $min;
-									?>
-								<?php endforeach ?>
-								<?php $data_nilai_optimasi[] = $nilai_yi;
-								$nilai_optimasi[] = $nilai_yi;
-								$id_nilai_optimasi[] = $alt->id_alternatif;
-								?>
-								<td><?php echo $max; ?></td>
-								<td><?php echo $min; ?></td>
-								<td><?php echo $nilai_yi; ?></td>
-							</tr>
-						<?php endforeach ?>
 					</tbody>
 				</table>
 			</div>
@@ -139,27 +109,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						$ranking = 1;
-						for ($i = 0; $i < 5; $i++) {
-							rsort($data_nilai_optimasi);
 
-							$id_optimasi = array_search($data_nilai_optimasi[$i], $nilai_optimasi);
-							$id_alternatif = $id_nilai_optimasi[$id_optimasi];
-							$alternatif = $this->MetodeModel->hasil_nilai($id_alternatif);
-
-							$nilai_optimasi_tertinggi = max($data_nilai_optimasi);
-							$id_optimasi2 = array_search($nilai_optimasi_tertinggi, $nilai_optimasi);
-							$id_alternatif2 = $id_nilai_optimasi[$id_optimasi2];
-							$nama_alternatif_terpilih = $this->MetodeModel->hasil_nilai($id_alternatif2);
-						?>
-							<tr>
-								<td><?php echo $alternatif['nama_alternatif']; ?></td>
-								<td><?php echo $data_nilai_optimasi[$i]; ?></td>
-								<td><?php echo $ranking; ?></td>
-							</tr>
-						<?php $ranking++;
-						} ?>
 					</tbody>
 				</table>
 			</div>
@@ -172,7 +122,7 @@
 			<h6 class="m-0 font-weight-bold text-primary">Hasil Akhir dan Kesimpulan</h6>
 		</div>
 		<div class="card-body">
-			Hasil dari perhitungan MOORA bisa disimpulkan dengan hasil alternatif terbaik yaitu <b><?php echo $nama_alternatif_terpilih['nama_alternatif']; ?></b>, dengan jumlah nilai optimasi <b><?php echo $nilai_optimasi_tertinggi ?></b> .
+			<!-- Hasil dari perhitungan MOORA bisa disimpulkan dengan hasil alternatif terbaik yaitu <b><?php echo $nama_alternatif_terpilih['nama_alternatif']; ?></b>, dengan jumlah nilai optimasi <b><?php echo $nilai_optimasi_tertinggi ?></b> . -->
 		</div>
 	</div>
 
