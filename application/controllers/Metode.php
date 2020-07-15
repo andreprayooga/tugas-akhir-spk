@@ -30,11 +30,21 @@ class Metode extends CI_Controller
 		// $nilai = $data['nilai'];
 		// echo '<pre>';
 		// var_dump($nilai);
+		$alternatif = [];
+		foreach ($this->db->get('tb_nilai')->result_array() as $key => $value) {
+			$alternatif[$value['fk_id_alternatif']] = $value;
+		}
 
+		
+		// echo '<pre>';
+		// var_dump($alternatif);
+		// die();
 		$tranpose = [];
 		foreach ($this->db->get('tb_nilai')->result() as $key => $value) {
 			$tranpose[$value->fk_id_kriteria][$value->fk_id_alternatif] = $value->total_nilai;
 		}
+		$data['nilai_alternatif'] = $tranpose;
+
 		// echo '<pre>';
 		// var_dump($tranpose);
 		// die();
@@ -46,6 +56,7 @@ class Metode extends CI_Controller
 			}
 			$sqrt[$key] = sqrt($sum);
 		}
+		$data['sqrt'] = $sqrt;
 		// echo '<pre>';
 		// var_dump($sqrt);
 		// die();
@@ -55,43 +66,94 @@ class Metode extends CI_Controller
 				$normalisasi[$key][$k] = $v / $sqrt[$key];
 			}
 		}
+		$data['normalisasi'] = $normalisasi;
+
 		// echo '<pre>';
 		// var_dump($normalisasi);
 		// die();
-		
+
 		$kriteria = [];
 		foreach ($this->db->get('tb_kriteria')->result() as $key => $value) {
 			$kriteria[$value->id_kriteria] = $value;
 		}
 
-		$tabel_yi = [];
+		$ternormalisasi = [];
 		foreach ($normalisasi as $key => $value) {
 			foreach ($value as $k => $v) {
-				$tabel_yi[$key][$k] = $v * $kriteria[$key]->bobot;
+				$ternormalisasi[$k][$key] = $v * $kriteria[$key]->bobot;
 			}
 		}
+		$data['ternormalisasi'] = $ternormalisasi;
+
 		//  echo '<pre>';
-		//  var_dump($tabel_yi);
+		//  var_dump($ternormalisasi);
 		// die();
 
-		// $result = [];
-		// foreach ($tabel_yi as $key => $value) {
-		// 	$res = 0;
-		// 	foreach ($value as $a=> $b) {
-		// 		if ($kriteria[$a]->tipe == 1) {
-		// 			$new_only_benefit[$a] = $b ;
-		// 			$res += $b;	
-		// 		} else {
-		// 			$res -= $b;
-		// 		}
-		// 		var_dump($res);
-		// 	}
-		// 	$result[$key] = $res;
-		// }
-		// echo '<pre>';
-		// var_dump($result);
-		// die();
+
+		$max = [];
+		$min = [];
+		$tabel_yi = [];
+		foreach ($ternormalisasi as $key => $value) {
+			$res = 0;
+			$res2 = 0;
+			foreach ($value as $a => $b) {
+				if ($kriteria[$a]->tipe == 1) {
+					// $new_only_benefit[$a] = $b ;
+					$res += $b;
+				} else {
+					$res -= 0;
+				}
+				if ($kriteria[$a]->tipe == 0) {
+					// $new_only_benefit[$a] = $b ;
+					$res2 += $b;
+				} else {
+					$res2 -= 0;
+				}
+			}
+			$max[$key] = $res;
+			$min[$key] = $res2;
+			$tabel_yi[$key] = $res - $res2;
+		}
+		$data['max'] = $max;
+		$data['min'] = $min;
+		$data['tabel_yi'] = $tabel_yi;
 		
+
+		// echo '<pre>';
+		// var_dump($tabel_yi);
+		// die();
+
+		$rankings = array_unique($tabel_yi);
+		rsort($rankings);
+
+		$result_data = [];
+		$i = 1;
+		foreach ($rankings as $key => $value) {
+			$result_data["". $value] = $i;
+			$i++;
+		}
+		
+
+		$text_rank = [];
+		foreach ($tabel_yi as $key => $value) {
+			$rank = $result_data["". $value];
+			$alternatif[$key]['value'] = $value;
+			$alternatif[$key]['rank']= $rank;
+			$text_rank[] = $alternatif[$key];
+		}
+
+		function compareOrder($a, $b)
+		{
+		return ($a['rank'] > $b['rank'] ? true : false);
+		}
+		usort($text_rank, 'compareOrder');
+		$data['sorted_rank_data'] = $text_rank;
+		// echo '<pre>';
+		// var_dump($text_rank);
+		// die();
+
+
+
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);

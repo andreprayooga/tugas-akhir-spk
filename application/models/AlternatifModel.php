@@ -20,7 +20,7 @@ class AlternatifModel extends CI_Model
         return $this->db->get()->row(0);
     }
 
-    public function get_all_warga()
+    public function get_warga_by_id()
     {
         $this->db->select('*');
         $this->db->from('tb_warga');
@@ -28,12 +28,14 @@ class AlternatifModel extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_warga_by_id($id_warga)
+    public function get_detail_warga_by_id($id_warga)
     {
-        $this->db->select('*');
+        $this->db->select('tb_alternatif.fk_id_warga, tb_warga.id_warga, tb_warga.status_bangunan_tinggal, tb_warga.status_lahan_tinggal, tb_warga.jenis_lantai_terluas, tb_warga.jenis_dinding, tb_warga.kondisi_dinding, tb_warga.jenis_atap, tb_warga.kondisi_atap, tb_warga.sumber_air_minum, tb_warga.sumber_penerangan');
         $this->db->from('tb_warga');
-        $this->db->where('id_warga', $id_warga);
-        return $this->db->get()->row(0);
+        $this->db->join('tb_alternatif', 'tb_alternatif.fk_id_warga = tb_warga.id_warga');
+        $this->db->where('tb_alternatif.fk_id_warga', $id_warga);
+
+        return $this->db->get()->result();
     }
 
     public function insert_data()

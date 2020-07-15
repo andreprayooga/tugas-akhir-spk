@@ -60,6 +60,12 @@ class NilaiModel extends CI_Model
 
     public function insert_nilai($data)
     {
+        $data = [
+            'fk_id_alternatif' => $this->input->post('fk_id_alternatif'),
+            'fk_id_kriteria' => $this->input->post('fk_id_kriteria'),
+            'total_nilai' => $this->input->post('total_nilai'),
+        ];
+
         $this->db->insert('tb_nilai', $data);
     }
 

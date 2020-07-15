@@ -33,12 +33,11 @@ class Nilai extends CI_Controller
 
 	public function index()
 	{
+		$data['url'] = 'Nilai';
 		$data['alternatif'] = $this->AlternatifModel->get_all_alternatif();
 		$data['nilai'] = $this->NilaiModel->get_data_alternatif_from_nilai();
 
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
-
-		$data['url'] = 'Nilai';
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);

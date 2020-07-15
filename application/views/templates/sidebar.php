@@ -29,7 +29,6 @@
                 Menu Management
             </div>
 
-            <?php if($this->session->userdata('fk_id_level')=='1') : ?>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item <?php echo $url == 'Alternatif' ? "active" : '' ?> || <?php echo $url == 'Kriteria' ? "active" : '' ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -45,20 +44,17 @@
                     </div>
                 </div>
             </li>
-            <?php endif; ?>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item <?php echo $url == 'Nilai' ? "active" : '' ?> || <?php echo $url == 'Metode' ? "active" : '' ?>">
-                <a class="nav-link collapsed <?php if($this->session->userdata('fk_id_level')=='1') : ?>pt-0<?php endif; ?>" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed pt-0" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Data Metode</span>
                 </a>
                 <div id="collapseUtilities" class="collapse <?php echo $url == 'Nilai' ? "show" : '' ?> || <?php echo $url == 'Metode' ? "show" : '' ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Data Metode :</h6>
-                        <?php if($this->session->userdata('fk_id_level')=='1') : ?>
                         <a class="collapse-item <?php echo $url == 'Nilai' ? "active" : '' ?>" href="<?php echo base_url('Nilai'); ?>"><i class="fas fa-fw fa-divide mr-2"></i>Data Nilai</a>
-                        <?php endif; ?>
                         <a class="collapse-item <?php echo $url == 'Metode' ? "active" : '' ?>" href="<?php echo base_url('Metode'); ?>"><i class="fas fa-fw fa-percentage mr-2"></i>Data Perhitungan</a>
                     </div>
                 </div>

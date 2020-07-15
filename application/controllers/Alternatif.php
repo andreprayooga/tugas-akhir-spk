@@ -29,14 +29,31 @@ class Alternatif extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
+	public function detail($id_warga)
+	{
+		$data['url'] = 'Alternatif';
+		$data['data_alternatif'] = $this->AlternatifModel->get_warga_by_id();
+		$data['detail_warga'] = $this->AlternatifModel->get_detail_warga_by_id($id_warga);
+
+		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
+		$this->load->view('alternatif/detail', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function insert()
 	{
 		$this->form_validation->set_rules('kode_alternatif', 'Kode Alternatif', 'trim|required');
 		$this->form_validation->set_rules('nama_alternatif', 'Nama Alternatif', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+
 			$data['url'] = 'Alternatif';
+
+			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
@@ -56,10 +73,11 @@ class Alternatif extends CI_Controller
 		$this->form_validation->set_rules('nama_alternatif', 'Nama Alternatif', 'trim|required');
 
 		if ($this->form_validation->run() == false) {
-			$data['url'] = 'alternatif';
 
+			$data['url'] = 'Alternatif';
 			$data['data'] = $this->AlternatifModel->get_all_alternatif();
 			$data['data'] = $this->AlternatifModel->get_alternatif_by_id($id_alternatif);
+
 			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
 			$this->load->view('templates/header', $data);
