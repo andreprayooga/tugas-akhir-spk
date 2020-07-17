@@ -14,7 +14,7 @@
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">Hai, Selamat Datang!</h1>
                                         <img src="<?php echo base_url('assets'); ?>/img/kdr.png" alt="" class="img-fluid" style="width:50%">
                                     </div>
 

@@ -11,6 +11,9 @@
 
                     <div class="d-sm-flex align-items-center justify-content-between ml-2">
                         <h1 class="h5 mb-0 text-gray-800">
+                            <!-- Fungsi Strftime
+                mengeset localization menggunakan fungsi setlocale(), tetapi kita tidak bisa menggunakan fungsi date() karena fungsi ini digunakan khusus untuk mencetak tanggal dalam bahasa Inggris. Fungsi yang dapat digunakan adalah strftime(), 
+                End Fungsi Strftime -->
                             <?php
                             setlocale(LC_ALL, 'id-ID', 'id_ID');
                             echo strftime("%A, %d %B %Y");
