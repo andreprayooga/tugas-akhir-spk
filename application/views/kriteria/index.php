@@ -35,7 +35,7 @@
                                 <td><?php echo $value->bobot ?></td>
                                 <?php if ($this->session->userdata('fk_id_level') == '1') : ?>
                                     <td>
-                                        <button onclick="update_kriteria()" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></button>
+                                        <button onclick="update_kriteria()" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></button>
                                         <button onclick="delete_kriteria()" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                     </td>
                                 <?php endif; ?>
