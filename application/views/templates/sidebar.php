@@ -70,7 +70,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item <?php echo $url == 'Warga' ? "active" : '' ?>">
-                <a class="nav-link pt-2" href="<?php echo base_url('Alternatif/index_warga'); ?>">
+                <a class="nav-link pt-2" href="<?php echo base_url('warga'); ?>">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Data Awal</span></a>
             </li>

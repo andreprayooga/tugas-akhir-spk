@@ -17,8 +17,9 @@ class Warga extends CI_Controller {
 
         $data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
         
-		$this->load->view('templates/header');
-		$this->load->view('templates/topbar');
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/navbar', $data);
 		$this->load->view('warga/index');
 		$this->load->view('templates/footer');
 	}

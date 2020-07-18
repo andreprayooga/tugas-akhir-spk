@@ -35,8 +35,8 @@
                                 <td><?php echo $value->bobot ?></td>
                                 <?php if ($this->session->userdata('fk_id_level') == '1') : ?>
                                     <td>
-                                        <button onclick="update_kriteria()" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></button>
-                                        <button onclick="delete_kriteria()" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button onclick="edit_kriteria(<?php echo $value->id_kriteria; ?>)" class="btn btn-sm btn-warning"><i class="fa fa-pencil-alt"></i></button>
+                                        <button onclick="delete_kriteria(<?php echo $value->id_kriteria; ?>)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                     </td>
                                 <?php endif; ?>
                             </tr>
@@ -75,6 +75,19 @@
         });
     });
 
+    $(document).ready(function() {
+        var dataString = $("#form").serialize();
+        var url = "Kriteria/insert_data"
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(''); ?>" + url,
+            data: dataString,
+            success: function($data) {
+                alert($data);
+            }
+        });
+    })
+
     function tambah_kriteria() {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
@@ -82,7 +95,7 @@
         //$('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
     }
 
-    function update_kriteria(id_kriteria) {
+    function edit_kriteria(id_kriteria) {
         save_method = 'update';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
@@ -90,12 +103,12 @@
 
         //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('kriteria/update_kriteria/') ?>/" + id_kriteria,
+            url: "<?php echo site_url('kriteria/edit_kriteria') ?>/"+ id_kriteria,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
 
-                $('[name="id_alternatif"]').val(data.id_alternatif);
+                $('[name="id_kriteria"]').val(data.id_kriteria);
                 $('[name="nama_kriteria"]').val(data.nama_kriteria);
                 $('[name="tipe"]').val(data.tipe);
                 $('[name="bobot"]').val(data.bobot);
@@ -111,8 +124,6 @@
     }
 
     function save() {
-        $('#btnSave').text('Add Data ...'); //change button text
-        $('#btnSave').attr('disabled', true); //set button disable 
 
         var url;
         if (save_method == 'add') {

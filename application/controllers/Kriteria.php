@@ -9,7 +9,7 @@ class Kriteria extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('KriteriaModel');
-		$this->load->helper('url');
+		$this->load->helper('url', 'form');
 		//validasi jika user belum login
 		if ($this->session->userdata('cek_login') != TRUE) {
 			redirect('auth', 'refresh');
@@ -85,20 +85,60 @@ class Kriteria extends CI_Controller
 
 	public function insert_kriteria()
 	{
-		$data = [
-            'nama_kriteria' => $this->input->post('nama_kriteria'),
-            'tipe' => $this->input->post('tipe'),
-            'bobot' => $this->input->post('bobot'),
-        ];
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('nama_kriteria', 'Nama Kriteria', 'trim|required');
+		$this->form_validation->set_rules('tipe', 'Tipe', 'trim|required');
+		$this->form_validation->set_rules('bobot', 'Bobot', 'trim|required|numeric');
 
-		$this->KriteriaModel->insert_data($data);
-		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses data berhasil <b>ditambahkan</b>!</div>');
-		echo json_encode(array("status" => TRUE));
+		if ($this->form_validation->run() == FALSE) {
+			echo validation_errors();
+		} else {
+			$data = [
+				'nama_kriteria' => $this->input->post('nama_kriteria'),
+				'tipe' => $this->input->post('tipe'),
+				'bobot' => $this->input->post('bobot'),
+			];
+	
+			$this->KriteriaModel->insert_data($data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses data berhasil <b>ditambahkan</b>!</div>');
+			echo json_encode(array("status" => TRUE));
+		}
+	}
+
+	public function edit_kriteria($id_kriteria)
+	{
+		
+		$data = $this->KriteriaModel->get_kriteria_by_id($id_kriteria);
+		echo json_encode($data);
 	}
 
 	public function update_kriteria()
 	{
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('nama_kriteria', 'Nama Kriteria', 'trim|required');
+		$this->form_validation->set_rules('tipe', 'Tipe', 'trim|required');
+		$this->form_validation->set_rules('bobot', 'Bobot', 'trim|required|numeric');
 
+		if ($this->form_validation->run() == FALSE) {
+			echo validation_errors();
+		} else {
+			$data = [
+				'nama_kriteria' => $this->input->post('nama_kriteria'),
+				'tipe' => $this->input->post('tipe'),
+				'bobot' => $this->input->post('bobot'),
+			];
+	
+			$this->KriteriaModel->update_Data(array('id_kriteria' => $this->input->post('id_kriteria')), $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses data berhasil <b>diupdate</b>!</div>');
+			echo json_encode(array("status" => TRUE));
+		}
+	}
+
+	public function delete_kriteria($id_kriteria)
+	{
+		$this->KriteriaModel->delete_by_id($id_kriteria);
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses data berhasil <b>dihapus</b>!</div>');
+		echo json_encode(array("status" => TRUE));
 	}
 
 	public function export_excel()
