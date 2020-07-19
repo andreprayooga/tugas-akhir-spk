@@ -103,18 +103,17 @@
 
         //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('kriteria/edit_kriteria') ?>/"+ id_kriteria,
+            url: "<?php echo site_url('kriteria/edit_kriteria') ?>/" + id_kriteria,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
 
-                $('[name="id_kriteria"]').val(data.id_kriteria);
                 $('[name="nama_kriteria"]').val(data.nama_kriteria);
                 $('[name="tipe"]').val(data.tipe);
                 $('[name="bobot"]').val(data.bobot);
 
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Update Kriteria'); // Set title to Bootstrap modal title
+                $('.modal-title').text('Update Data Kriteria'); // Set title to Bootstrap modal title
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -140,19 +139,18 @@
             dataType: "JSON",
             success: function(data) {
                 if (data.status) {
+                    $('#modal_form').modal('hide');
+                    location.reload(); // for reload a page
                     toastr.success('Item Created Successfully.', 'Success Alert', {
                         timeOut: 5000
                     });
-                    //if success close modal and reload ajax table
-                    $('#modal_form').modal('hide');
-                    location.reload(); // for reload a page
                 }
 
                 $('#btnSave').text('Save changes'); //change button text
                 $('#btnSave').attr('disabled', false); //set button enable
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                alert('Data gagal ditambahkan / diupdate');
+                alert('Data gagal ditambahkan!');
                 $('#btnSave').text('Save changes'); //change button text
                 $('#btnSave').attr('disabled', false); //set button enable 
             }
@@ -190,6 +188,7 @@
                 </button>
             </div>
             <div class="modal-body form">
+            <?php echo validation_errors(); ?>
                 <form action="" id="form">
                     <input type="hidden" name="id_kriteria" />
                     <div class="form-group">
