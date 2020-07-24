@@ -21,7 +21,7 @@ class Auth extends CI_Controller
 			$this->load->view('auth-login');
 			$this->load->view('templates/auth-footer');
 		} else {
-			redirect('Dashboard', 'refresh');
+			redirect('dashboard', 'refresh');
 		}
 	}
 
@@ -39,17 +39,17 @@ class Auth extends CI_Controller
 				$this->session->set_userdata('fk_id_level', '1');
 				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
 				$this->session->set_userdata('username', $data['username']);
-				redirect('Dashboard', 'refresh');
+				redirect('dashboard', 'refresh');
 			} else {
 				$this->session->set_userdata('fk_id_level', '2');
 				$this->session->set_userdata('nama_lengkap', $data['nama_lengkap']);
 				$this->session->set_userdata('username', $data['username']);
-				redirect('Dashboard', 'refresh');
+				redirect('dashboard', 'refresh');
 			}
 		} else {
 			echo $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Maaf, password anda salah!</div>');
 		}
-		redirect('Auth', 'refresh');
+		redirect('auth', 'refresh');
 	}
 
 	public function logout()
@@ -57,6 +57,6 @@ class Auth extends CI_Controller
 		$this->session->sess_destroy();
 		$this->session->unset_userdata('username');
 		echo $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda berhasil logout!</div>');
-		redirect('Auth', 'refresh');
+		redirect('auth', 'refresh');
 	}
 }

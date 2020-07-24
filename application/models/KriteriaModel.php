@@ -4,51 +4,49 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class KriteriaModel extends CI_Model
 {
 
-    var $table = 'tb_kriteria';
-
     function get_all_kriteria()
     {
-        $this->db->select('*');
         $this->db->from('tb_kriteria');
-        $this->db->order_by('id_kriteria');
-        return $this->db->get()->result();
+        $query = $this->db->get();
+        return $query->result();
     }
 
-    function get_kriteria_by_id($id_kriteria)
+    function get_by_id($id)
     {
-        $this->db->select('*');
         $this->db->from('tb_kriteria');
-        $this->db->where('id_kriteria', $id_kriteria);
-        return $this->db->get()->row(0);
+        $this->db->where('id_kriteria', $id);
+        $query = $this->db->get();
+
+        return $query->row();
     }
 
-    public function __construct()
-	{
-		parent::__construct();
-		$this->load->database();
-	}
-
-    public function insert_data($data)
+    public function insert_kriteria()
     {
-        $this->db->insert($this->table, $data);
-		return $this->db->insert_id();
+        $data = array(
+            'nama_kriteria' => $this->input->post('nama_kriteria'),
+            'tipe' => $this->input->post('tipe'),
+            'bobot' => $this->input->post('bobot'),
+        );
+
+        $this->db->insert('tb_kriteria', $data);    
     }
 
-    public function get_kriteria()
+    public function update_kriteria($id)
     {
-        $query = $this->db->get('tb_kriteria');
-		return $query;
+        $data = array(
+            'nama_kriteria' => $this->input->post('nama_kriteria'),
+            'tipe' => $this->input->post('tipe'),
+            'bobot' => $this->input->post('bobot'),
+        );
+
+        $this->db->set($data);
+        $this->db->where('id_kriteria', $id);
+        $this->db->update('tb_kriteria', $data);
     }
 
-    public function update_data($data, $where)
+    public function delete_kriteria($id)
     {
-        $this->db->update($this->table, $data, $where);
-		return $this->db->affected_rows();
-    }
-
-    public function delete_by_id($id_kriteria)
-    {
-        $this->db->where('id_kriteria', $id_kriteria);
-		$this->db->delete($this->table);
+        $this->db->where('id_kriteria', $id);
+        $this->db->delete('tb_kriteria');
     }
 }

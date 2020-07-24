@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1 ?>
+                        <!-- <?php $no = 1 ?>
                         <?php if (!empty($nilai)) {
                             $i = 1;
                             foreach ($nilai as $val) { ?>
@@ -49,7 +49,7 @@
                                 </tr>
                             <?php }
                         } else { ?>
-                        <?php } ?>
+                        <?php } ?> -->
                     </tbody>
                 </table>
             </div>

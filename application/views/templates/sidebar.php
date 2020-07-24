@@ -16,7 +16,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item <?php echo $url == 'Dashboard' ? "active" : '' ?>">
-                <a class="nav-link" href="<?php echo base_url('Dashboard'); ?>">
+                <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -39,8 +39,8 @@
                 <div id="collapseTwo" class="collapse <?php echo $url == 'Alternatif' ? "show" : '' ?> || <?php echo $url == 'Kriteria' ? "show" : '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Menu Management :</h6>
-                        <a class="collapse-item <?php echo $url == 'Alternatif' ? "active" : '' ?>" href="<?php echo base_url('Alternatif'); ?>"><i class="fas fa-fw fa-users mr-2"></i>Data Alternatif</a>
-                        <a class="collapse-item <?php echo $url == 'Kriteria' ? "active" : '' ?>" href="<?php echo base_url('Kriteria'); ?>"><i class="fas fa-fw fa-address-book mr-2"></i>Data Kriteria</a>
+                        <a class="collapse-item <?php echo $url == 'Alternatif' ? "active" : '' ?>" href="<?php echo base_url('alternatif'); ?>"><i class="fas fa-fw fa-users mr-2"></i>Data Alternatif</a>
+                        <a class="collapse-item <?php echo $url == 'Kriteria' ? "active" : '' ?>" href="<?php echo base_url('kriteria'); ?>"><i class="fas fa-fw fa-address-book mr-2"></i>Data Kriteria</a>
                     </div>
                 </div>
             </li>
@@ -54,8 +54,8 @@
                 <div id="collapseUtilities" class="collapse <?php echo $url == 'Nilai' ? "show" : '' ?> || <?php echo $url == 'Metode' ? "show" : '' ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Data Metode :</h6>
-                        <a class="collapse-item <?php echo $url == 'Nilai' ? "active" : '' ?>" href="<?php echo base_url('Nilai'); ?>"><i class="fas fa-fw fa-divide mr-2"></i>Data Nilai</a>
-                        <a class="collapse-item <?php echo $url == 'Metode' ? "active" : '' ?>" href="<?php echo base_url('Metode'); ?>"><i class="fas fa-fw fa-percentage mr-2"></i>Data Perhitungan</a>
+                        <a class="collapse-item <?php echo $url == 'Nilai' ? "active" : '' ?>" href="<?php echo base_url('nilai'); ?>"><i class="fas fa-fw fa-divide mr-2"></i>Data Nilai</a>
+                        <a class="collapse-item <?php echo $url == 'Metode' ? "active" : '' ?>" href="<?php echo base_url('metode'); ?>"><i class="fas fa-fw fa-percentage mr-2"></i>Data Perhitungan</a>
                     </div>
                 </div>
             </li>

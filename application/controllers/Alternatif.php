@@ -9,6 +9,7 @@ class Alternatif extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('AlternatifModel');
+		$this->load->helper('url', 'form');
 		//validasi jika user belum login
 		if ($this->session->userdata('cek_login') != TRUE) {
 			redirect('auth', 'refresh');
@@ -19,6 +20,7 @@ class Alternatif extends CI_Controller
 	{
 		$data['url'] = 'Alternatif';
 		$data['data_alternatif'] = $this->AlternatifModel->get_all_alternatif();
+		$data['nama_alternatif'] = $this->AlternatifModel->get_nama_warga();
 
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
 
@@ -29,87 +31,95 @@ class Alternatif extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function detail($id_warga)
+	public function insert_alternatif()
 	{
-		$data['url'] = 'Alternatif';
-		$data['data_alternatif'] = $this->AlternatifModel->get_warga_by_id();
-		$data['detail_warga'] = $this->AlternatifModel->get_detail_warga_by_id($id_warga);
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('fk_id_warga', 'Nama Alternatif', 'trim|required');
 
-		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
-
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('templates/navbar', $data);
-		$this->load->view('alternatif/detail', $data);
-		$this->load->view('templates/footer');
-	}
-
-	public function insert()
-	{
-		$this->form_validation->set_rules('kode_alternatif', 'Kode Alternatif', 'trim|required');
-		$this->form_validation->set_rules('nama_alternatif', 'Nama Alternatif', 'trim|required');
-
-		if ($this->form_validation->run() == false) {
-
-			$data['url'] = 'Alternatif';
-
-			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
-
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/navbar', $data);
-			$this->load->view('alternatif/insert');
-			$this->load->view('templates/footer');
+		if ($this->form_validation->run() == FALSE) {
+			echo validation_errors();
 		} else {
-			$this->AlternatifModel->insert_data();
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses, data berhasil ditambahkan!</div>');
-			redirect('alternatif');
+			$data = [
+				'fk_id_warga' => $this->input->post('fk_id_warga'),
+			];
+
+			$this->AlternatifModel->insert_data($data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses data berhasil <b>ditambahkan</b>!</div>');
+			echo json_encode(array("status" => TRUE));
 		}
 	}
 
-	public function update($id_alternatif)
+	public function delete_alternatif($id_alternatif)
 	{
-		$this->form_validation->set_rules('kode_alternatif', 'Kode Alternatif', 'trim|required');
-		$this->form_validation->set_rules('nama_alternatif', 'Nama Alternatif', 'trim|required');
+		$this->AlternatifModel->delete_by_id($id_alternatif);
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses data berhasil <b>dihapus</b>!</div>');
+		echo json_encode(array("status" => TRUE));
+	}
 
-		if ($this->form_validation->run() == false) {
+	public function export_excel()
+	{
+		$data['data_kriteria'] = $this->KriteriaModel->get_all_kriteria();
 
-			$data['url'] = 'Alternatif';
-			$data['data'] = $this->AlternatifModel->get_all_alternatif();
-			$data['data'] = $this->AlternatifModel->get_alternatif_by_id($id_alternatif);
+		require(APPPATH . 'third_party/PHPExcel/Classes/PHPExcel.php');
+		require(APPPATH . 'third_party/PHPExcel/Classes/PHPExcel/IOFactory.php');
+		require(APPPATH . 'third_party/PHPExcel/Classes/PHPExcel/Writer/Excel2007.php');
 
-			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+		$kriteriaPHPExcel = new PHPExcel();
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/navbar', $data);
-			$this->load->view('alternatif/update', $data);
-			$this->load->view('templates/footer');
-		} else {
-			$this->AlternatifModel->update_data($id_alternatif);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses, data berhasil di update!</div>');
-			redirect('alternatif');
+		$kriteriaPHPExcel->getProperties()->setCreator("Kristina");
+		$kriteriaPHPExcel->getProperties()->setLastModifiedBy("Kristina");
+		$kriteriaPHPExcel->getProperties()->setTitle("Data Kriteria");
+		$kriteriaPHPExcel->getProperties()->setSubject("");
+		$kriteriaPHPExcel->getProperties()->setDescription("");
+
+		$kriteriaPHPExcel->setActiveSheetIndex(0);
+
+		$kriteriaPHPExcel->getActiveSheet()->setCellValue('A1', 'No');
+		$kriteriaPHPExcel->getActiveSheet()->setCellValue('B1', 'Nama Kriteria');
+		$kriteriaPHPExcel->getActiveSheet()->setCellValue('C1', 'Tipe');
+		$kriteriaPHPExcel->getActiveSheet()->setCellValue('D1', 'Bobot');
+
+		$baris = 2;
+		$x = 1;
+
+		foreach ($data['data_kriteria'] as $data) {
+			$kriteriaPHPExcel->getActiveSheet()->setCellValue('A' . $baris, $x++);
+			$kriteriaPHPExcel->getActiveSheet()->setCellValue('B' . $baris, $data->nama_kriteria);
+			$kriteriaPHPExcel->getActiveSheet()->setCellValue('C' . $baris, $data->tipe);
+			$kriteriaPHPExcel->getActiveSheet()->setCellValue('D' . $baris, $data->bobot);
+
+			$baris++;
 		}
+
+		$filename = "Data Kriteria" . date("d-m-Y-H-i-s") . '.xlsx';
+
+		$kriteriaPHPExcel->getACtiveSheet()->setTitle("Data Kriteria");
+
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $filename . '"');
+		header('Cache-Control: max-age = 0');
+
+		$writer = PHPExcel_IOFactory::createWriter($kriteriaPHPExcel, 'Excel2007');
+		$writer->save('php://output');
+
+		exit;
 	}
 
-	public function delete($id_alternatif)
+	public function export_pdf()
 	{
-		$this->AlternatifModel->delete_data($id_alternatif);
-		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses, data berhasil dihapus!</div>');
-		redirect('alternatif');
-	}
+		$this->load->library('dompdf_gen');
 
-	public function index_warga()
-	{
-		$data['url'] = 'Warga';
-		$data['data_warga'] = $this->AlternatifModel->get_all_warga();
+		$data['data_kriteria'] = $this->KriteriaModel->get_all_kriteria();
 
-		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+		$this->load->view('kriteria/pdf_kriteria', $data);
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/sidebar', $data);
-		$this->load->view('templates/navbar', $data);
-		$this->load->view('alternatif/index_warga', $data);
-		$this->load->view('templates/footer');
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("Laporan Kriteria PDF", array('Attachment' => 0));
 	}
 }

@@ -26,15 +26,15 @@
                                 }
                                 elseif ($hour >=12 && $hour<=14)
                                 {
-                                echo "Selamat Siang - ";
+                                echo "Selamat Siang :) - ";
                                 }
                                 elseif ($hour >=15 && $hour<=17)
                                 {
-                                echo "Selamat Sore - ";
+                                echo "Selamat Sore :) - ";
                                 }
                                 elseif ($hour >=17 && $hour<=18)
                                 {
-                                echo "Selamat Petang - ";
+                                echo "Selamat Petang :) - ";
                                 }
                                 elseif ($hour >=19 && $hour<=23)
                                 {
@@ -67,24 +67,6 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
