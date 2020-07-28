@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
 	{
 		$data['url'] = 'Dashboard';
 		$data['get_user'] = $this->DashboardModel->get_all_user();
+		$data['pie_chart'] = $this->DashboardModel->get_pie_chart();
 
 		$data['session_login'] = $this->db->get_where('tb_user', ['username' => $this->session->userdata('username')])->row_array();
 

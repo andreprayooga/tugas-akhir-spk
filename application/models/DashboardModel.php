@@ -5,7 +5,6 @@ class DashboardModel extends CI_Model
 {
     public function get_all_user()
     {
-        $this->db->select('*');
         $this->db->from('tb_user');
         $this->db->order_by('id_user');
         return $this->db->get()->result();
@@ -13,9 +12,14 @@ class DashboardModel extends CI_Model
 
     public function get_user_by_id($id_user)
     {
-        $this->db->select('*');
         $this->db->from('tb_user');
         $this->db->where('id_user', $id_user);
         return $this->db->get()->row(0);
+    }
+
+    public function get_pie_chart()
+    {
+        $this->db->from('tb_warga');
+        return $this->db->get()->result();
     }
 }

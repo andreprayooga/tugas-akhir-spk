@@ -19,10 +19,10 @@
 					<tbody>
 						<?php foreach ($alternatif as $alt) : ?>
 							<tr>
-								<td><?php echo $alt->nama_alternatif ?></td>
+								<td><?php echo $alt->nama_warga ?></td>
 								<?php foreach ($kriteria as $val) :  ?>
 									<td>
-										<?php $data_perhitungan_nilai = $this->MetodeModel->get_niai_setiap_alternatif($alt->id_alternatif, $val->id_kriteria);
+										<?php $data_perhitungan_nilai = $this->MetodeModel->get_niai_setiap_alternatif($alt->id_warga, $val->id_kriteria);
 										echo $data_perhitungan_nilai['total_nilai']; ?>
 									</td>
 								<?php endforeach ?>
@@ -46,7 +46,7 @@
 						<tr>
 							<th>No</th>
 							<th>Kode Alternatif</th>
-							<th>Hasil Sqrt</th>
+							<th>Hasil Nilai SQRT</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,7 +78,7 @@
 							<th>No</th>
 							<th>Kode Kriteria</th>
 							<?php foreach ($alternatif as $val) : ?>
-								<th>A<?php echo $val->id_alternatif ?></th>
+								<th>A<?php echo $val->id_warga ?></th>
 							<?php endforeach ?>
 
 						</tr>
@@ -104,7 +104,7 @@
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Menghitung Niali Matriks Ternormalisasi</h6>
+			<h6 class="m-0 font-weight-bold text-primary">Menghitung Nilai Matriks Ternormalisasi</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
@@ -112,7 +112,7 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Kode Alternatif</th>
+							<th>Kode</th>
 							<?php foreach ($kriteria as $val) : ?>
 								<th>C<?php echo $val->id_kriteria ?></th>
 							<?php endforeach ?>
@@ -189,10 +189,11 @@
 					</thead>
 					<tbody>
 						<?php $no = 1; ?>
+						<?php $key = 1; ?>
 						<?php foreach ($sorted_rank_data as $key => $value) : ?>
 							<tr>
 								<td><?php echo $no++; ?></td>
-								<td><?php echo "A" . $value['fk_id_alternatif']; ?></td>
+								<td><?php echo "A" . $key; ?></td>
 								<td><?php echo $value['value']; ?></td>
 								<td><?php echo $value['rank']; ?></td>
 							</tr>
@@ -200,16 +201,6 @@
 					</tbody>
 				</table>
 			</div>
-		</div>
-	</div>
-
-	<!-- DataTales Example -->
-	<div class="card shadow mb-4">
-		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Hasil Akhir dan Kesimpulan</h6>
-		</div>
-		<div class="card-body">
-			<!-- Hasil dari perhitungan MOORA bisa disimpulkan dengan hasil alternatif terbaik yaitu <b><?php echo $value['fk_id_alternatif']; ?></b>, dengan jumlah nilai optimasi <b><?php echo $value['rank'] ?></b> . -->
 		</div>
 	</div>
 

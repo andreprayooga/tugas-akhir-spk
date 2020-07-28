@@ -32,19 +32,18 @@ class Metode extends CI_Controller
 		// var_dump($nilai);
 		$alternatif = [];
 		foreach ($this->db->get('tb_nilai')->result_array() as $key => $value) {
-			$alternatif[$value['fk_id_alternatif']] = $value;
+			$alternatif[$value['fk_id_warga']] = $value;
 		}
 
 		
 		// echo '<pre>';
-		// var_dump($alternatif);
+		// var_dump($warga);
 		// die();
 		$tranpose = [];
 		foreach ($this->db->get('tb_nilai')->result() as $key => $value) {
-			$tranpose[$value->fk_id_kriteria][$value->fk_id_alternatif] = $value->total_nilai;
+			$tranpose[$value->fk_id_kriteria][$value->fk_id_warga] = $value->total_nilai;
 		}
-		$data['nilai_alternatif'] = $tranpose;
-
+		$data['nilai_warga'] = $tranpose;
 		// echo '<pre>';
 		// var_dump($tranpose);
 		// die();
@@ -137,9 +136,9 @@ class Metode extends CI_Controller
 		$text_rank = [];
 		foreach ($tabel_yi as $key => $value) {
 			$rank = $result_data["". $value];
-			$alternatif[$key]['value'] = $value;
-			$alternatif[$key]['rank']= $rank;
-			$text_rank[] = $alternatif[$key];
+			$warga[$key]['value'] = $value;
+			$warga[$key]['rank']= $rank;
+			$text_rank[] = $warga[$key];
 		}
 
 		function compareOrder($a, $b)

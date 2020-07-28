@@ -3,28 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class AlternatifModel extends CI_Model
 {
-
-    var $table = 'tb_alternatif';
-
-    public function __construct()
+    public function get_all()
     {
-        parent::__construct();
-        $this->load->database();
-    }
-
-    public function get_all_alternatif()
-    {
-        $this->db->select('*');
         $this->db->from('tb_alternatif');
         $this->db->order_by('id_alternatif');
         return $this->db->get()->result();
     }
 
-    public function get_alternatif_by_id($id_alternatif)
+    public function get_by_id($id)
     {
-        $this->db->select('*');
         $this->db->from('tb_alternatif');
-        $this->db->where('id_alternatif', $id_alternatif);
+        $this->db->where('id_alternatif', $id);
         return $this->db->get()->row(0);
     }
 
@@ -37,27 +26,29 @@ class AlternatifModel extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function insert_data($data)
+    public function insert_alternatif()
     {
-        $this->db->insert($this->table, $data);
-        return $this->db->insert_id();
+        $data = array(
+            'fk_id_warga' => $this->input->post('fk_id_warga'),
+        );
+
+        $this->db->insert('tb_alternatif', $data);
     }
 
-    public function get_alternatif()
+    public function update_aletrnatif($id)  
     {
-        $query = $this->db->get('tb_alternatif');
-        return $query;
+        $data = array(
+            'fk_id_warga' => $this->input->post('fk_id_warga'),
+        );
+
+        $this->db->set($data);
+        $this->db->where('id_alernatif', $id);
+        $this->db->update('tb_alternatif', $data);
     }
 
-    public function update_data($data, $where)
+    public function delete_by_id($id)
     {
-        $this->db->update($this->table, $data, $where);
-        return $this->db->affected_rows();
-    }
-
-    public function delete_by_id($id_alternatif)
-    {
-        $this->db->where('id_alternatif', $id_alternatif);
-        $this->db->delete($this->table);
+        $this->db->where('id_alternatif', $id);
+        $this->db->delete('tb_alternatif');
     }
 }

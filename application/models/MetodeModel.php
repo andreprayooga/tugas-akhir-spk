@@ -27,21 +27,21 @@ class MetodeModel extends CI_Model
 
     public function get_niai_setiap_alternatif($id_alternatif, $id_kriteria)
     {
-        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_alternatif = '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
+        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_warga = '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
 
         return $query->row_array();
     }
 
     public function get_data_penilaian($id_alternatif, $id_kriteria)
     {
-        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_alternatif= '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
+        $query = $this->db->query("SELECT * FROM tb_nilai WHERE fk_id_warga= '$id_alternatif' AND fk_id_kriteria = '$id_kriteria';");
 
         return $query->row_array();
     }
 
     public function get_nilai_setiap_alternatif()
     {
-        $query = $this->db->query("SELECT DISTINCT tb_alternatif.nama_alternatif, tb_alternatif.id_alternatif FROM tb_alternatif JOIN tb_nilai ON tb_alternatif.id_alternatif = tb_nilai.fk_id_alternatif;");
+        $query = $this->db->query("SELECT DISTINCT tb_warga.nama_warga, tb_warga.id_warga FROM tb_warga JOIN tb_nilai ON tb_warga.id_warga = tb_nilai.fk_id_warga;");
 
         return $query->result();
     }
@@ -58,7 +58,7 @@ class MetodeModel extends CI_Model
         $query = $this->db->query("SELECT ((total_nilai / nilai_pembagian) * tb_kriteria.bobot) AS pembobotan_setiap_nilai, tb_kriteria.bobot, tb_kriteria.tipe 
 		FROM tb_nilai JOIN (SELECT SQRT(SUM(POWER(total_nilai, 2))) AS nilai_pembagian FROM tb_nilai WHERE fk_id_kriteria='$id_kriteria') AS bobot_nilai 
 		JOIN tb_kriteria ON tb_kriteria.id_kriteria = tb_nilai.fk_id_kriteria 
-        WHERE tb_kriteria.id_kriteria='$id_kriteria' GROUP BY tb_nilai.fk_id_alternatif");
+        WHERE tb_kriteria.id_kriteria='$id_kriteria' GROUP BY tb_nilai.fk_id_warga");
 
         return $query->row_array();
     }

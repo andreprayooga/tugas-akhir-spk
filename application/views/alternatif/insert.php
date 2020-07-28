@@ -1,34 +1,25 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <?php echo $this->session->flashdata('message'); ?>
+    <h1 class="h4 mb-4 text-gray-800">Tambah Data Aletrnatif</h1>
 
-    <div class="row">
-        <div class="col-lg-4">
-            <!-- Basic Card Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Form Insert Alternatif</h6>
-                </div>
-                <div class="card-body">
-                    <form action="<?php echo site_url('alternatif/insert'); ?>" method="post">
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="kode_alternatif">Kode Alternatif</label>
-                                <input type="text" class="form-control form-control-sm" id="kode_alternatif" name="kode_alternatif" value="<?php echo set_value('kode_alternatif'); ?>" placeholder="">
-                                <?php echo form_error('kode_alternatif', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                            <div class="form-group col-md-7">
-                                <label for="nama_alternatif">Nama Alternatif</label>
-                                <input type="text" class="form-control form-control-sm" id="nama_alternatif" name="nama_alternatif" value="<?php echo set_value('nama_alternatif'); ?>" placeholder="">
-                                <?php echo form_error('nama_alternatif', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                    </form>
-                </div>
+    <div class="col-lg-5">
+        <form action="<?php echo site_url('alternatif/insert'); ?>" method="post">
+            <div class="form-group">
+                <label for="fk_id_warga">ID / Nama Warga</label>
+                <select class="form-control" name="fk_id_warga" id="fk_id_warga">
+                    <option selected>-- Pilih Nama Warga --</option>
+                    <?php foreach ($this->db->get('tb_warga')->result_array() as $key => $value) : ?>
+                        <option value="<?php echo $value['id_warga'] ?>"> <?php echo $value['nama_warga'] ?></option>
+                    <?php endforeach ?>
+                    <?php echo form_error('fk_id_warga', '<small class="text-danger pl-3">', '</small>'); ?>
+                </select>
             </div>
-        </div>
+            <div class="form-group">
+                <a href="<?php echo base_url('kriteria'); ?>" class="btn btn-sm btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
 </div>
 <!-- /.container-fluid -->

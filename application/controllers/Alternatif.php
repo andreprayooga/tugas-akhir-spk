@@ -19,7 +19,7 @@ class Alternatif extends CI_Controller
 	public function index()
 	{
 		$data['url'] = 'Alternatif';
-		$data['data_alternatif'] = $this->AlternatifModel->get_all_alternatif();
+		$data['data_alternatif'] = $this->AlternatifModel->get_all();
 		$data['nama_alternatif'] = $this->AlternatifModel->get_nama_warga();
 
 		$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
@@ -31,29 +31,31 @@ class Alternatif extends CI_Controller
 		$this->load->view('templates/footer');
 	}
 
-	public function insert_alternatif()
+	public function insert()
 	{
-		$this->form_validation->set_error_delimiters('', '');
-		$this->form_validation->set_rules('fk_id_warga', 'Nama Alternatif', 'trim|required');
+		$this->form_validation->set_rules('fk_id_warga', 'ID Warga', 'trim|required');
 
-		if ($this->form_validation->run() == FALSE) {
-			echo validation_errors();
+		if ($this->form_validation->run() == false) {
+			$data['url'] = 'Alternatif';
+			$data['session_login'] = $this->db->get_where('tb_user', ['nama_lengkap' => $this->session->userdata('nama_lengkap')])->row_array();
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/navbar', $data);
+			$this->load->view('alternatif/insert', $data);
+			$this->load->view('templates/footer');
 		} else {
-			$data = [
-				'fk_id_warga' => $this->input->post('fk_id_warga'),
-			];
-
-			$this->AlternatifModel->insert_data($data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses data berhasil <b>ditambahkan</b>!</div>');
-			echo json_encode(array("status" => TRUE));
+			$this->AlternatifModel->insert_alternatif();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Sukses, data berhasil <b>ditambahkan</b>!</div>');
+			redirect('alternatif', 'refresh');
 		}
 	}
 
-	public function delete_alternatif($id_alternatif)
+	public function delete($id)
 	{
-		$this->AlternatifModel->delete_by_id($id_alternatif);
-		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses data berhasil <b>dihapus</b>!</div>');
-		echo json_encode(array("status" => TRUE));
+		$this->AlternatifModel->delete_by_id($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Sukses, data berhasil <b>dihapus</b>!</div>');
+		redirect('alternatif', 'refresh');
 	}
 
 	public function export_excel()
